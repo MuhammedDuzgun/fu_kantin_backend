@@ -2,31 +2,29 @@
 
 include("connection.php");
 
-if($_POST) {
+if ($_POST) {
     $userId = $_POST["userId"];
 }
 
-$_userId = (int) $userId;
+$_userId = (int)$userId;
 
 $getMyPostsQuery = "SELECT p.postId, p.title, p.post, p.date, u.username, COUNT(r.replyId) AS numberOfReplies
-FROM Posts p
-LEFT JOIN Users u ON p.userId = u.userId
-LEFT JOIN Replies r ON p.postId = r.postId
+FROM post p
+LEFT JOIN user u ON p.userId = u.userId
+LEFT JOIN reply r ON p.postId = r.postId
 WHERE u.userId = '$_userId'
 GROUP BY p.postId, p.title, p.post, p.date, u.username
-ORDER BY p.postId DESC;
-";
+ORDER BY p.postId DESC";
 
 $result = mysqli_query($connection, $getMyPostsQuery);
 
 $response = array();
 
-if(mysqli_num_rows($result) > 0) {
-
+if (mysqli_num_rows($result) > 0) {
     $response["posts"] = array();
 
-    while($row = mysqli_fetch_assoc($result)) {
-        
+    while ($row = mysqli_fetch_assoc($result)) {
+
         $post = array();
 
         $post["postId"] = $row["postId"];
@@ -39,7 +37,7 @@ if(mysqli_num_rows($result) > 0) {
         array_push($response["posts"], $post);
     }
 
-    print json_encode($response);
+    echo json_encode($response);
 
 } else if (mysqli_num_rows($result) == 0) {
     echo "zero";
@@ -48,5 +46,6 @@ if(mysqli_num_rows($result) > 0) {
 }
 
 mysqli_close($connection);
+
 
 ?>  

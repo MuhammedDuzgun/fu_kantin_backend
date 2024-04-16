@@ -2,23 +2,23 @@
 
 include("connection.php");
 
-if($_POST) {
+if ($_POST) {
     $userId = $_POST["userId"];
 }
 
 $connection->autocommit(false);
 
-$deleteUserDetailsQuery = "DELETE FROM UserDetails WHERE UserDetails.userId = '$userId' ";
-$deleteRepliesQuery = "DELETE FROM Replies WHERE Replies.userId = '$userId' ";
-$deletePostQuery = "DELETE FROM Posts WHERE Posts.userId = '$userId' ";
-$deleteUserQuery = "DELETE FROM Users WHERE Users.userId = '$userId' ";
+$deleteUserDetailQuery = "DELETE FROM user_detail WHERE user_detail.userId = '$userId' ";
+$deleteRepliesQuery = "DELETE FROM reply WHERE reply.userId = '$userId' ";
+$deletePostQuery = "DELETE FROM post WHERE post.userId = '$userId' ";
+$deleteUserQuery = "DELETE FROM user WHERE user.userId = '$userId' ";
 
-$resultDeleteUserDetails = mysqli_query($connection, $deleteUserDetailsQuery);
+$resultDeleteUserDetail = mysqli_query($connection, $deleteUserDetailQuery);
 $resultDeleteReplies = mysqli_query($connection, $deleteRepliesQuery);
 $resultDeletePost = mysqli_query($connection, $deletePostQuery);
 $resultDeleteUser = mysqli_query($connection, $deleteUserQuery);
 
-if($resultDeleteUserDetails && $resultDeleteReplies && $resultDeletePost && $resultDeleteUser) {
+if ($resultDeleteUserDetail && $resultDeleteReplies && $resultDeletePost && $resultDeleteUser) {
     $connection->commit();
     echo "deleted successfully";
 } else {
@@ -29,5 +29,6 @@ if($resultDeleteUserDetails && $resultDeleteReplies && $resultDeletePost && $res
 $connection->autocommit(true);
 
 mysqli_close($connection);
+
 
 ?>

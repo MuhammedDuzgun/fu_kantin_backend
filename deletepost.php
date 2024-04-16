@@ -2,19 +2,19 @@
 
 include("connection.php");
 
-if($_POST) {
+if ($_POST) {
     $postId = $_POST["postId"];
 }
 
 $connection->autocommit(false);
 
-$deleteRepliesQuery = "DELETE FROM Replies WHERE Replies.postId = '$postId' ";
-$deletePostQuery = "DELETE FROM Posts WHERE Posts.postId = '$postId' ";
+$deleteRepliesQuery = "DELETE FROM reply WHERE reply.postId = '$postId' ";
+$deletePostQuery = "DELETE FROM post WHERE post.postId = '$postId' ";
 
 $resultDeleteReplies = mysqli_query($connection, $deleteRepliesQuery);
 $resultDeletePost = mysqli_query($connection, $deletePostQuery);
 
-if($resultDeleteReplies && $deletePostQuery) {
+if ($resultDeleteReplies && $resultDeletePost) {
     $connection->commit();
     echo "deleted successfully";
 } else {

@@ -2,20 +2,21 @@
 
 include("connection.php");
 
-if($_POST) {
+if ($_POST) {
     $userId = $_POST["userId"];
     $instagram = $_POST["instagram"];
 }
 
-$updateInstagramQuery = "UPDATE UserDetails SET instagramAddress = '$instagram' WHERE UserDetails.userId = '$userId' ";
+$updateInstagramQuery = "UPDATE user_detail SET instagramAddress = '$instagram' WHERE user_detail.userId = '$userId'";
 $resultInstagram = mysqli_query($connection, $updateInstagramQuery);
 
-if($resultInstagram) {
-    echo "Instagram Updated Successfuly";
+if ($resultInstagram) {
+    echo "Instagram Updated Successfully";
 } else {
     echo "error";
 }
 
 mysqli_close($connection);
+
 
 ?>

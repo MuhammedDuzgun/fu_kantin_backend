@@ -2,17 +2,17 @@
 
 include("connection.php");
 
-$getPostsQuery = "SELECT p.postId, p.categoryId, p.title, p.post, p.date, u.userId, u.username, COUNT(r.replyId) AS numberOfReplies FROM Posts p LEFT JOIN Users u ON p.userId = u.userId LEFT JOIN Replies r ON p.postId = r.postId GROUP BY p.postId, p.categoryId, p.title, p.post, p.date, u.userId, u.username ORDER BY p.postId DESC";
+$getPostsQuery = "SELECT p.postId, p.categoryId, p.title, p.post, p.date, u.userId, u.username, COUNT(r.replyId) AS numberOfReplies FROM post p LEFT JOIN user u ON p.userId = u.userId LEFT JOIN reply r ON p.postId = r.postId GROUP BY p.postId, p.categoryId, p.title, p.post, p.date, u.userId, u.username ORDER BY p.postId DESC";
 $result = mysqli_query($connection, $getPostsQuery);
 
 $response = array();
 
-if(mysqli_num_rows($result) > 0) {
+if (mysqli_num_rows($result) > 0) {
 
     $response["posts"] = array();
 
-    while($row = mysqli_fetch_assoc($result)) {
-        
+    while ($row = mysqli_fetch_assoc($result)) {
+
         $post = array();
 
         $post["postId"] = $row["postId"];
@@ -27,12 +27,13 @@ if(mysqli_num_rows($result) > 0) {
         array_push($response["posts"], $post);
     }
 
-    print json_encode($response);
+    echo json_encode($response);
 
 } else {
     echo "error";
 }
 
 mysqli_close($connection);
+
 
 ?>

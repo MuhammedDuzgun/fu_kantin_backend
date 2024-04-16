@@ -2,20 +2,21 @@
 
 include("connection.php");
 
-if($_POST) {
+if ($_POST) {
     $userId = $_POST["userId"];
     $department = $_POST["department"];
 }
 
-$updateDepartmentQuery = "UPDATE UserDetails SET department = '$department' WHERE UserDetails.userId = '$userId' ";
+$updateDepartmentQuery = "UPDATE user_detail SET department = '$department' WHERE user_detail.userId = '$userId'";
 $resultDepartment = mysqli_query($connection, $updateDepartmentQuery);
 
-if($resultDepartment) {
-    echo "Department Updated Successfuly";
+if ($resultDepartment) {
+    echo "Department Updated Successfully";
 } else {
     echo "error";
 }
 
 mysqli_close($connection);
+
 
 ?>

@@ -2,7 +2,7 @@
 
 include("connection.php");
 
-if($_POST) {
+if ($_POST) {
     $postId = $_POST["postId"];
     $userId = $_POST["userId"];
     $reply = $_POST["reply"];
@@ -10,22 +10,23 @@ if($_POST) {
 
 $_postId = mysqli_real_escape_string($connection, $postId);
 $_userId = mysqli_real_escape_string($connection, $userId);
-$_reply  = mysqli_real_escape_string($connection, $reply);
+$_reply = mysqli_real_escape_string($connection, $reply);
 
-$_postId = (int) $_postId;
-$_userId = (int) $_userId;
+$_postId = (int)$_postId;
+$_userId = (int)$_userId;
 
 $currentDateTime = date('d.m.Y H:i');
 
-$insertReplyQuery = "INSERT INTO `Replies` (`replyId`, `postId`, `userId`, `reply`, `date`) VALUES (NULL, '$_postId' , '$_userId', '$_reply', '$currentDateTime')";
+$insertReplyQuery = "INSERT INTO `reply` (`replyId`, `postId`, `userId`, `reply`, `date`) VALUES (NULL, '$_postId', '$_userId', '$_reply', '$currentDateTime')";
 $resultInsertReply = mysqli_query($connection, $insertReplyQuery);
 
-if($resultInsertReply) {
-    echo "reply inserted successfuly";
+if ($resultInsertReply) {
+    echo "reply inserted successfully";
 } else {
     echo "error";
 }
 
 mysqli_close($connection);
+
 
 ?>

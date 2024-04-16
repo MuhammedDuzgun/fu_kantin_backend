@@ -2,7 +2,7 @@
 
 include("connection.php");
 
-if($_POST) {
+if ($_POST) {
     $username = $_POST["username"];
     $password = $_POST["password"];
 }
@@ -13,20 +13,20 @@ $_password = md5($password);
 $response = array();
 $response["user"] = array();
 
-$insertUserQuery = "INSERT INTO `Users` (`userId` ,`username`, `password`) VALUES (NULL, '$_username', '$_password')";
+$insertUserQuery = "INSERT INTO `user` (`userId`, `username`, `password`) VALUES (NULL, '$_username', '$_password')";
 $result = mysqli_query($connection, $insertUserQuery);
 $userId =  $connection->insert_id;
 
-if($result) {
-    $insertUserDetailsQuery = "INSERT INTO `UserDetails` (`userDetailId` ,`userId`, `department`, `instagramAddress`, `biography`) VALUES (NULL, '$userId', DEFAULT, DEFAULT, DEFAULT)";
+if ($result) {
+    $insertUserDetailsQuery = "INSERT INTO `user_detail` (`userDetailId`, `userId`, `department`, `instagramAddress`, `biography`) VALUES (NULL, '$userId', DEFAULT, DEFAULT, DEFAULT)";
     $resultInsertUserDetails = mysqli_query($connection, $insertUserDetailsQuery);
     $userDetailId = $connection->insert_id;
-    if($resultInsertUserDetails) {
+    if ($resultInsertUserDetails) {
         $user = array();
         $user["userId"] = $userId;
         $user["userDetailId"] = $userDetailId;
-        array_push($response["user"] , $user);
-        print json_encode($response); 
+        array_push($response["user"], $user);
+        print json_encode($response);
     } else {
         echo "error";
     }
@@ -35,5 +35,6 @@ if($result) {
 }
 
 mysqli_close($connection);
+
 
 ?>

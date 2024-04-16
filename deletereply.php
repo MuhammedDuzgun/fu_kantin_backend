@@ -2,16 +2,16 @@
 
 include("connection.php");
 
-if($_POST) {
+if ($_POST) {
     $replyId = $_POST["replyId"];
 }
 
 $connection->autocommit(false);
 
-$deleteReplyQuery = "DELETE FROM Replies WHERE Replies.replyId = '$replyId' ";
+$deleteReplyQuery = "DELETE FROM reply WHERE reply.replyId = '$replyId' ";
 $resultDeleteReply = mysqli_query($connection, $deleteReplyQuery);
 
-if($resultDeleteReply) {
+if ($resultDeleteReply) {
     $connection->commit();
     echo "deleted successfully";
 } else {
@@ -22,5 +22,6 @@ if($resultDeleteReply) {
 $connection->autocommit(true);
 
 mysqli_close($connection);
+
 
 ?>
