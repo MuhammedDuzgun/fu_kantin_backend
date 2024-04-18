@@ -3,12 +3,12 @@
 include("connection.php");
 
 if ($_POST) {
-    $userId = $_POST["userId"];
+    $user_id = $_POST["userId"];
 }
 
-$_userId = (int)$userId;
+$_userId = (int)$user_id;
 
-$getMyProfileQuery = "SELECT u.userId, u.username, ud.userDetailId, ud.department, ud.instagramAddress, ud.biography FROM user u LEFT JOIN user_detail ud ON u.userId = ud.userId WHERE u.userId = '$_userId' ";
+$getMyProfileQuery = "SELECT u.user_id, u.username, ud.user_detail_id, ud.department, ud.instagram_address, ud.biography FROM user u LEFT JOIN user_detail ud ON u.user_id = ud.user_id WHERE u.user_id = '$_userId' ";
 $result = mysqli_query($connection, $getMyProfileQuery);
 
 $response = array();
@@ -19,11 +19,11 @@ if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
         $user = array();
 
-        $user["userId"] = $row["userId"];
+        $user["userId"] = $row["user_id"];
         $user["username"] = $row["username"];
-        $user["userDetailId"] = $row["userDetailId"];
+        $user["userDetailId"] = $row["user_detail_id"];
         $user["department"] = $row["department"];
-        $user["instagramAddress"] = $row["instagramAddress"];
+        $user["instagramAddress"] = $row["instagram_address"];
         $user["biography"] = $row["biography"];
 
         array_push($response["users"], $user);

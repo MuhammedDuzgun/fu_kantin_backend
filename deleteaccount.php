@@ -3,15 +3,15 @@
 include("connection.php");
 
 if ($_POST) {
-    $userId = $_POST["userId"];
+    $user_id = $_POST["userId"]; // Değişiklik: $userId -> $user_id
 }
 
 $connection->autocommit(false);
 
-$deleteUserDetailQuery = "DELETE FROM user_detail WHERE user_detail.userId = '$userId' ";
-$deleteRepliesQuery = "DELETE FROM reply WHERE reply.userId = '$userId' ";
-$deletePostQuery = "DELETE FROM post WHERE post.userId = '$userId' ";
-$deleteUserQuery = "DELETE FROM user WHERE user.userId = '$userId' ";
+$deleteUserDetailQuery = "DELETE FROM user_detail WHERE user_detail.user_id = '$user_id' "; // Değişiklik: userId -> user_id
+$deleteRepliesQuery = "DELETE FROM reply WHERE reply.user_id = '$user_id' "; // Değişiklik: userId -> user_id
+$deletePostQuery = "DELETE FROM post WHERE post.user_id = '$user_id' "; // Değişiklik: userId -> user_id
+$deleteUserQuery = "DELETE FROM user WHERE user.user_id = '$user_id' "; // Değişiklik: userId -> user_id
 
 $resultDeleteUserDetail = mysqli_query($connection, $deleteUserDetailQuery);
 $resultDeleteReplies = mysqli_query($connection, $deleteRepliesQuery);
@@ -29,6 +29,7 @@ if ($resultDeleteUserDetail && $resultDeleteReplies && $resultDeletePost && $res
 $connection->autocommit(true);
 
 mysqli_close($connection);
+
 
 
 ?>
