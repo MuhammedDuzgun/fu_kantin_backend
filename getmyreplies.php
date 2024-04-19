@@ -6,7 +6,7 @@ if ($_POST) {
     $userId = $_POST["userId"];
 }
 
-$getMyRepliesQuery = "SELECT r.replyId, u.username, r.reply, r.date FROM reply r LEFT JOIN user u ON r.userId =u.userId WHERE r.userId = '$userId' ORDER BY r.replyId DESC";
+$getMyRepliesQuery = "SELECT r.reply_id, u.username, r.reply, r.date FROM reply r LEFT JOIN user u ON r.user_id = u.user_id WHERE r.user_id = '$userId' ORDER BY r.reply_id DESC";
 
 $result = mysqli_query($connection, $getMyRepliesQuery);
 
@@ -20,7 +20,7 @@ if (mysqli_num_rows($result) > 0) {
 
         $reply = array();
 
-        $reply["replyId"] = $row["replyId"];
+        $reply["replyId"] = $row["reply_id"];
         $reply["username"] = $row["username"];
         $reply["reply"] = $row["reply"];
         $reply["date"] = $row["date"];
