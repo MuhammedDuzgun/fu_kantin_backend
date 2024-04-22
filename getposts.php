@@ -16,7 +16,7 @@ if (mysqli_num_rows($result) > 0) {
         $post = array();
 
         $post["postId"] = $row["post_id"];
-        $post["category_id"] = $row["category_id"];
+        $post["categoryId"] = $row["category_id"];
         $post["title"] = $row["title"];
         $post["post"] = $row["post"];
         $post["userId"] = $row["user_id"];

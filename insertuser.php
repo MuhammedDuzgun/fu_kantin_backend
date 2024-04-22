@@ -23,8 +23,8 @@ if ($result) {
     $userDetailId = $connection->insert_id;
     if ($resultInsertUserDetails) {
         $user = array();
-        $user["user_id"] = $userId;
-        $user["user_detail_id"] = $userDetailId;
+        $user["userId"] = $userId;
+        $user["userDetailId"] = $userDetailId;
         array_push($response["user"], $user);
         print json_encode($response);
     } else {
