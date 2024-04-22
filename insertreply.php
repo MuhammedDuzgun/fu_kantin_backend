@@ -17,7 +17,7 @@ $_userId = (int)$_userId;
 
 $currentDateTime = date('d.m.Y H:i');
 
-$insertReplyQuery = "INSERT INTO `reply` (`replyId`, `postId`, `userId`, `reply`, `date`) VALUES (NULL, '$_postId', '$_userId', '$_reply', '$currentDateTime')";
+$insertReplyQuery = "INSERT INTO `reply` (`reply_id`, `post_id`, `user_id`, `reply`, `date`) VALUES (NULL, '$_postId', '$_userId', '$_reply', '$currentDateTime')";
 $resultInsertReply = mysqli_query($connection, $insertReplyQuery);
 
 if ($resultInsertReply) {

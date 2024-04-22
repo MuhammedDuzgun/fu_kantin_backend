@@ -16,7 +16,7 @@ $_userId = (int)$userId;
 
 $currentDateTime = date('d.m.Y H:i');
 
-$insertPostQuery = "INSERT INTO `post` (`postId`, `userId`, `categoryId`, `title`, `post`, `date`) VALUES (NULL, '$_userId', '$_categoryId', '$_title', '$_post', '$currentDateTime')";
+$insertPostQuery = "INSERT INTO `post` (`post_id`, `user_id`, `category_id`, `title`, `post`, `date`) VALUES (NULL, '$_userId', '$_categoryId', '$_title', '$_post', '$currentDateTime')";
 $resultInsertPost = mysqli_query($connection, $insertPostQuery);
 
 if ($resultInsertPost) {

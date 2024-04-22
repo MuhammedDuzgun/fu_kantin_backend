@@ -7,7 +7,7 @@ if ($_POST) {
     $bio = $_POST["bio"];
 }
 
-$updateUserBioQuery = "UPDATE user_detail SET biography = '$bio' WHERE user_detail.userId = '$userId'";
+$updateUserBioQuery = "UPDATE user_detail SET biography = '$bio' WHERE user_detail.user_id = '$userId'";
 $resultBio = mysqli_query($connection, $updateUserBioQuery);
 
 if ($resultBio) {

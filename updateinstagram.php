@@ -7,7 +7,7 @@ if ($_POST) {
     $instagram = $_POST["instagram"];
 }
 
-$updateInstagramQuery = "UPDATE user_detail SET instagramAddress = '$instagram' WHERE user_detail.userId = '$userId'";
+$updateInstagramQuery = "UPDATE user_detail SET instagram_address = '$instagram' WHERE user_detail.user_id = '$userId'";
 $resultInstagram = mysqli_query($connection, $updateInstagramQuery);
 
 if ($resultInstagram) {

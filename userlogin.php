@@ -23,7 +23,7 @@ if (mysqli_num_rows($result) > 0) {
 
         $user = array();
 
-        $user["userId"] = $row["userId"];
+        $user["userId"] = $row["user_id"];
         $user["username"] = $row["username"];
         $user["password"] = $row["password"];
 

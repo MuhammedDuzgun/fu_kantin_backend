@@ -7,7 +7,7 @@ if ($_POST) {
     $department = $_POST["department"];
 }
 
-$updateDepartmentQuery = "UPDATE user_detail SET department = '$department' WHERE user_detail.userId = '$userId'";
+$updateDepartmentQuery = "UPDATE user_detail SET department = '$department' WHERE user_detail.user_id = '$userId'";
 $resultDepartment = mysqli_query($connection, $updateDepartmentQuery);
 
 if ($resultDepartment) {
